@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodrecipes.Listeners.RecipeClickListener;
 import com.example.foodrecipes.Models.Recipe;
 import com.example.foodrecipes.R;
 import com.squareup.picasso.Picasso;
@@ -24,11 +25,13 @@ public class RandomRecipeAdapters extends RecyclerView.Adapter<RandomRecipeAdapt
     Activity context;
     int layoutId;
     ArrayList<Recipe> list;
+    RecipeClickListener recipeClickListener;
 
-    public RandomRecipeAdapters(Activity context, int layoutId, ArrayList<Recipe> list) {
+    public RandomRecipeAdapters(Activity context, int layoutId, ArrayList<Recipe> list, RecipeClickListener recipeClickListener) {
         this.context = context;
         this.layoutId = layoutId;
         this.list = list;
+        this.recipeClickListener = recipeClickListener;
     }
 
     @NonNull
@@ -51,6 +54,13 @@ public class RandomRecipeAdapters extends RecyclerView.Adapter<RandomRecipeAdapt
         holder.tvDes.setText(recipe.summary);
         //using to load image
         Picasso.get().load(recipe.image).into(holder.imgFood);
+
+        holder.random_list_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recipeClickListener.onRecipeClicked(String.valueOf(recipe.id));
+            }
+        });
     }
 
     @Override
@@ -59,12 +69,14 @@ public class RandomRecipeAdapters extends RecyclerView.Adapter<RandomRecipeAdapt
     }
 
     public static class RandomRecipeViewHolder extends RecyclerView.ViewHolder {
+        CardView random_list_container;
         TextView tvTitle, tvServings, tvLikes, tvTimes, tvDes;
         ImageView imgFood;
 
 
         public RandomRecipeViewHolder(@NonNull View itemView) {
             super(itemView);
+            random_list_container = (CardView) itemView.findViewById(R.id.random_recipe_list_container);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             tvServings = (TextView) itemView.findViewById(R.id.tvFoodServings);
             tvLikes = (TextView) itemView.findViewById(R.id.tvFoodLikes);

@@ -1,6 +1,8 @@
 package com.example.foodrecipes;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.foodrecipes.Adapters.RandomRecipeAdapters;
 import com.example.foodrecipes.Listeners.RandomRecipeResponseListener;
+import com.example.foodrecipes.Listeners.RecipeClickListener;
 import com.example.foodrecipes.Models.RandomRecipeApiResponse;
 
 import org.w3c.dom.Text;
@@ -81,16 +84,15 @@ public class recipesFragment extends Fragment {
         return view;
     }
 
+//    Random Recipe Response Listener
     private final RandomRecipeResponseListener randomRecipeResponseListener = new RandomRecipeResponseListener() {
         @Override
         public void didFetch(RandomRecipeApiResponse response, String message) {
             dialog.dismiss();
             recyclerView = view.findViewById(R.id.recycler_random);
-            recyclerView.setHasFixedSize(false);
+            recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//            Toast toast = Toast.makeText(getActivity(), response.recipes.get(0).servings + "", Toast.LENGTH_LONG);
-//            toast.show();
-            randomRecipeAdapters = new RandomRecipeAdapters(getActivity(), R.layout.list_random_recipe, response.recipes);
+            randomRecipeAdapters = new RandomRecipeAdapters(getActivity(), R.layout.list_random_recipe, response.recipes, recipeClickListener);
             recyclerView.setAdapter(randomRecipeAdapters);
         }
 
@@ -101,6 +103,7 @@ public class recipesFragment extends Fragment {
         }
     };
 
+//    Tag spinner
     private final AdapterView.OnItemSelectedListener spinnerSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -113,6 +116,14 @@ public class recipesFragment extends Fragment {
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
 
+        }
+    };
+
+//    Recipe Click Listener
+    private final RecipeClickListener recipeClickListener = new RecipeClickListener() {
+        @Override
+        public void onRecipeClicked(String id) {
+            startActivity(new Intent(getContext(), RecipeDetailsActivity.class).putExtra("id", id));
         }
     };
 }
