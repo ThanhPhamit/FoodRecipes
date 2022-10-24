@@ -24,6 +24,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     RequestManager manager;
     ProgressDialog dialog;
     IngredientsApdapter ingredientsApdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         tvMealSource = findViewById(R.id.tvMealSource);
         tvMealSummary = findViewById(R.id.tvMealSummary);
         imageViewMeal = findViewById(R.id.imageViewMealImage);
-        recyclerViewInGredients = findViewById(R.id.recyclerViewMealIngredients);
+
     }
 
     private final RecipeDetailsListener listener = new RecipeDetailsListener() {
@@ -52,13 +53,15 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             dialog.dismiss();
             tvMealName.setText(response.getTitle());
             tvMealSource.setText(response.getSourceName());
-            tvMealSummary.setText(response.getSummary());
+            tvMealSummary.setText("Summary:" + response.getSummary());
             Picasso.get().load(response.getImage()).into(imageViewMeal);
-
+            recyclerViewInGredients = findViewById(R.id.recyclerViewMealIngredients);
             recyclerViewInGredients.setHasFixedSize(true);
             recyclerViewInGredients.setLayoutManager(new GridLayoutManager(RecipeDetailsActivity.this, 3));
             ingredientsApdapter = new IngredientsApdapter(RecipeDetailsActivity.this, R.layout.list_meal_ingredients, response.getExtendedIngredients());
+            recyclerViewInGredients.setNestedScrollingEnabled(true);
             recyclerViewInGredients.setAdapter(ingredientsApdapter);
+
         }
 
         @Override

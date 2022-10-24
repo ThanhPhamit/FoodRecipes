@@ -1,6 +1,7 @@
 package com.example.foodrecipes.Models;
 
 import java.util.ArrayList;
+
 import org.jsoup.Jsoup;
 
 public class RecipeDetailsResponse {
@@ -363,7 +364,7 @@ public class RecipeDetailsResponse {
     }
 
     public String getSummary() {
-        return Jsoup;
+        return Jsoup.parse(summary).text();
     }
 
     public void setSummary(String summary) {
