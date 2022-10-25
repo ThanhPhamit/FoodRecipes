@@ -52,8 +52,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         public void didFetch(RecipeDetailsResponse response, String message) {
             dialog.dismiss();
             tvMealName.setText(response.getTitle());
-            tvMealSource.setText(response.getSourceName());
-            tvMealSummary.setText("Summary:" + response.getSummary());
+            tvMealSource.setText("Food source: " + response.getSourceName());
+            tvMealSummary.setText(response.getSummary());
             Picasso.get().load(response.getImage()).into(imageViewMeal);
             recyclerViewInGredients = findViewById(R.id.recyclerViewMealIngredients);
             recyclerViewInGredients.setHasFixedSize(true);

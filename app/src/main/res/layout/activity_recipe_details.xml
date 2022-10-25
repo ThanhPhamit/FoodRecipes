@@ -34,13 +34,14 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_marginTop="8dp"
                     android:id="@+id/tvMealName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Recipe Name"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -63,18 +64,38 @@
                     android:scaleType="centerCrop" />
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Summary"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    />
+                <TextView
                     android:id="@+id/tvMealSummary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:padding="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:paddingHorizontal="8dp"
                     android:text="Summary"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instruction"
+                    />
+            </LinearLayout>
             <LinearLayout
                 android:layout_marginVertical="5dp"
                 android:background="@color/recipe_details_bg"
