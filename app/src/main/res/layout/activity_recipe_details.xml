@@ -34,6 +34,11 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:paddingHorizontal="5dp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
                     android:layout_marginTop="8dp"
                     android:id="@+id/tvMealName"
                     android:layout_width="match_parent"
@@ -84,6 +89,20 @@
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suggest Recipes"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewSimilarRecipes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:layout_marginHorizontal="8dp"

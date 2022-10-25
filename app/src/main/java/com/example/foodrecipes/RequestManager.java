@@ -1,13 +1,14 @@
 package com.example.foodrecipes;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.foodrecipes.Listeners.RandomRecipeResponseListener;
 import com.example.foodrecipes.Listeners.RecipeDetailsListener;
+import com.example.foodrecipes.Listeners.SimilarRecipesListener;
 import com.example.foodrecipes.Models.RandomRecipeApiResponse;
 import com.example.foodrecipes.Models.Recipe;
 import com.example.foodrecipes.Models.RecipeDetailsResponse;
+import com.example.foodrecipes.Models.SimilarRecipe;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class RequestManager {
     //    Get Random Recipes
     public void getRandomRecipes(RandomRecipeResponseListener listener, ArrayList<String> tags) {
         CallRandomRecipes callRandomRecipes = retrofit.create(CallRandomRecipes.class);
-        Call<RandomRecipeApiResponse<Recipe>> call = callRandomRecipes.callRandomRecipe(context.getString(R.string.api_key), "10", tags);
+        Call<RandomRecipeApiResponse<Recipe>> call = callRandomRecipes.callRandomRecipe(context.getString(R.string.api_key), "15", tags);
         call.enqueue(new Callback<RandomRecipeApiResponse<Recipe>>() {
             @Override
             public void onResponse(Call<RandomRecipeApiResponse<Recipe>> call, Response<RandomRecipeApiResponse<Recipe>> response) {
@@ -59,7 +60,7 @@ public class RequestManager {
         call.enqueue(new Callback<RecipeDetailsResponse>() {
             @Override
             public void onResponse(Call<RecipeDetailsResponse> call, Response<RecipeDetailsResponse> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     listener.didError(response.message());
                     return;
                 }
@@ -68,6 +69,27 @@ public class RequestManager {
 
             @Override
             public void onFailure(Call<RecipeDetailsResponse> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+
+    //    Get similar recipes
+    public void getSimilarRecipes(SimilarRecipesListener listener, int id){
+        CallSimilarRecipes callSimilarRecipes = retrofit.create(CallSimilarRecipes.class);
+        Call<ArrayList<SimilarRecipe>> call = callSimilarRecipes.callSimilarRecipes(id, "10", context.getString(R.string.api_key));
+        call.enqueue(new Callback<ArrayList<SimilarRecipe>>() {
+            @Override
+            public void onResponse(Call<ArrayList<SimilarRecipe>> call, Response<ArrayList<SimilarRecipe>> response) {
+                if (!response.isSuccessful()) {
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<SimilarRecipe>> call, Throwable t) {
                 listener.didError(t.getMessage());
             }
         });
@@ -87,6 +109,15 @@ public class RequestManager {
         @GET("recipes/{id}/information")
         Call<RecipeDetailsResponse> callRecipeDetails(
                 @Path("id") int id,
+                @Query("apiKey") String apiKey
+        );
+    }
+
+    private interface CallSimilarRecipes {
+        @GET("recipes/{id}/similar")
+        Call<ArrayList<SimilarRecipe>> callSimilarRecipes(
+                @Path("id") int id,
+                @Query("number") String number,
                 @Query("apiKey") String apiKey
         );
     }

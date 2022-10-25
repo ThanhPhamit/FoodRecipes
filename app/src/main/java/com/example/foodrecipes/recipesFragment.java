@@ -1,33 +1,26 @@
 package com.example.foodrecipes;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodrecipes.Adapters.RandomRecipeAdapters;
+import com.example.foodrecipes.Adapters.RecipeAdapters;
 import com.example.foodrecipes.Listeners.RandomRecipeResponseListener;
 import com.example.foodrecipes.Listeners.RecipeClickListener;
 import com.example.foodrecipes.Models.RandomRecipeApiResponse;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -39,7 +32,7 @@ import java.util.ArrayList;
 public class recipesFragment extends Fragment {
     ProgressDialog dialog;
     RequestManager manager;
-    RandomRecipeAdapters randomRecipeAdapters;
+    RecipeAdapters recipeAdapters;
     RecyclerView recyclerView;
     View view;
     ArrayList<String> tags = new ArrayList<>();
@@ -92,8 +85,8 @@ public class recipesFragment extends Fragment {
             recyclerView = view.findViewById(R.id.recycler_random);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            randomRecipeAdapters = new RandomRecipeAdapters(getActivity(), R.layout.list_random_recipe, response.recipes, recipeClickListener);
-            recyclerView.setAdapter(randomRecipeAdapters);
+            recipeAdapters = new RecipeAdapters(getActivity(), R.layout.list_random_recipe, response.recipes, recipeClickListener);
+            recyclerView.setAdapter(recipeAdapters);
         }
 
         @Override

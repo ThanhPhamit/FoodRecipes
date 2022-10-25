@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/similar_recipe_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="@dimen/random_recipe_card_elevation"
+    android:id="@+id/cardViewSimilarRecipe"
+
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="@dimen/similar_recipe_width_item"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textViewSimilarRecipeTitle"
+            android:textSize="@dimen/similar_recipe_title_size"
+            android:text="Recipe title"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="@dimen/similar_recipe_title_padding"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imageViewSimilarRecipe"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/similar_recipe_height_image"/>
+        <TextView
+            android:id="@+id/textViewSimilarRecipeServings"
+            android:text="5 People"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:padding="@dimen/similar_recipe_title_padding"
+            android:scrollHorizontally="true"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
