@@ -41,24 +41,22 @@ public class RandomRecipeAdapters extends RecyclerView.Adapter<RandomRecipeAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RandomRecipeAdapters.RandomRecipeViewHolder holder, int position) {
-        final int pos = position;
-        Recipe recipe = list.get(pos);
-        Log.d("Log", recipe.title);
+    public void onBindViewHolder(@NonNull RandomRecipeViewHolder holder, int position) {
+        Recipe recipe = list.get(position);
 
-        holder.tvTitle.setText(recipe.title);
+        holder.tvTitle.setText(recipe.getTitle());
         holder.tvTitle.setSelected(true);
-        holder.tvServings.setText(recipe.servings + " Servings");
-        holder.tvLikes.setText(recipe.aggregateLikes + " Likes");
-        holder.tvTimes.setText(recipe.readyInMinutes + " Minutes");
-        holder.tvDes.setText(recipe.summary);
+        holder.tvServings.setText(recipe.getServings() + " Servings");
+        holder.tvLikes.setText(recipe.getAggregateLikes() + " Likes");
+        holder.tvTimes.setText(recipe.getReadyInMinutes() + " Minutes");
+        holder.tvDes.setText(recipe.getSummary());
         //using to load image
-        Picasso.get().load(recipe.image).into(holder.imgFood);
+        Picasso.get().load(recipe.getImage()).into(holder.imgFood);
 
         holder.random_list_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recipeClickListener.onRecipeClicked(String.valueOf(recipe.id));
+                recipeClickListener.onRecipeClicked(String.valueOf(recipe.getId()));
             }
         });
     }

@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="SplashColorPrimary">#e968a3</color>
     <color name="colorPrimary">#0e701a</color>
+    <color name="recipe_bg">#BEF1A4</color>
+    <color name="recipe_details_bg">#DBFFC9</color>
 </resources>

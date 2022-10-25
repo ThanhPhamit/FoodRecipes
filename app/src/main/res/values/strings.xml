@@ -8,7 +8,9 @@
     <string name="food_jokes_fragment">Joke</string>
     <string name="menu">Menu</string>
     <string name="search_hint">Search your recipe...</string>
-
+    <string name="recipe_details">Recipe Details</string>
+    <string name="ingredient_image_url_100x100">https://spoonacular.com/cdn/ingredients_100x100/</string>
+    <string name="ingredient_image_url_250x250">https://spoonacular.com/cdn/ingredients_250x250/</string>
     <!--  Meal types  -->
     <string-array name="tags">
         <item>main course</item>
