@@ -10,8 +10,12 @@
     <string name="search_hint">Search your recipe...</string>
     <string name="recipe_details">Recipe Details</string>
     <string name="ingredient_image_url_100x100">https://spoonacular.com/cdn/ingredients_100x100/</string>
+    <string name="equipment_image_url_100x100">https://spoonacular.com/cdn/equipment_100x100/</string>
     <string name="ingredient_image_url_250x250">https://spoonacular.com/cdn/ingredients_250x250/</string>
     <string name="get_recipe_image">https://spoonacular.com/recipeImages/</string>
+    <string name="instruction">Instruction</string>
+    <string name="equipments">Equipments</string>
+    <string name="ingredients">Ingredients</string>
     <!--  Meal types  -->
     <string-array name="tags">
         <item>main course</item>
