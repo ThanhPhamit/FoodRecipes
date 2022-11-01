@@ -1,10 +1,13 @@
 package com.example.foodrecipes;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.example.foodrecipes.Listeners.InstructionsListener;
 import com.example.foodrecipes.Listeners.RandomRecipeResponseListener;
 import com.example.foodrecipes.Listeners.RecipeDetailsListener;
 import com.example.foodrecipes.Listeners.SimilarRecipesListener;
+import com.example.foodrecipes.Models.Instruction;
 import com.example.foodrecipes.Models.RandomRecipeApiResponse;
 import com.example.foodrecipes.Models.Recipe;
 import com.example.foodrecipes.Models.RecipeDetailsResponse;
@@ -95,6 +98,27 @@ public class RequestManager {
         });
     }
 
+//    Get instructions
+    public void getInstructions(InstructionsListener listener, int id){
+        CallInstructions callInstructions = retrofit.create(CallInstructions.class);
+        Call<ArrayList<Instruction>> call = callInstructions.callInstruction(id, context.getString(R.string.api_key));
+        call.enqueue(new Callback<ArrayList<Instruction>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Instruction>> call, Response<ArrayList<Instruction>> response) {
+                if (!response.isSuccessful()) {
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Instruction>> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+
     //INTERFACE
     private interface CallRandomRecipes {
         @GET("recipes/random")
@@ -118,6 +142,14 @@ public class RequestManager {
         Call<ArrayList<SimilarRecipe>> callSimilarRecipes(
                 @Path("id") int id,
                 @Query("number") String number,
+                @Query("apiKey") String apiKey
+        );
+    }
+
+    private interface CallInstructions{
+        @GET("recipes/{id}/analyzedInstructions")
+        Call<ArrayList<Instruction>> callInstruction(
+                @Path("id") int id,
                 @Query("apiKey") String apiKey
         );
     }

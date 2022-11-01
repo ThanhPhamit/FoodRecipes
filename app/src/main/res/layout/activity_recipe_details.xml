@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:elevation="8dp"
+            android:elevation="@dimen/cardview_default_elevation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/recipe_details_bg"
-                android:elevation="8dp"
+                android:elevation="@dimen/random_recipe_card_elevation"
                 android:orientation="vertical">
 
                 <TextView
@@ -46,7 +46,7 @@
                     android:gravity="center"
                     android:text="Recipe Name"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/recipe_name_text_size"
                     android:textStyle="bold" />
 
                 <TextView
@@ -57,13 +57,13 @@
                     android:padding="8dp"
                     android:text="Source"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/meal_source_text_size"
                     android:textStyle="italic" />
 
                 <ImageView
                     android:id="@+id/imageViewMealImage"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="@dimen/recipe_image_height"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginVertical="4dp"
                     android:scaleType="centerCrop" />
@@ -75,7 +75,7 @@
                     android:gravity="center"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/title_size"
                     android:textStyle="bold"
                     />
                 <TextView
@@ -87,16 +87,16 @@
                     android:paddingHorizontal="8dp"
                     android:text="Summary"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="normal" />
+                    android:textSize="@dimen/summary_size"
+                    android:textStyle="normal"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Suggest Recipes"
+                    android:text="Similar Recipes"
                     android:gravity="center"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/title_size"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -110,6 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
+                    android:id="@+id/btnInstruction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Instruction"
@@ -129,7 +130,7 @@
                     android:padding="8dp"
                     android:text="Ingredients"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/ingredients_title"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
