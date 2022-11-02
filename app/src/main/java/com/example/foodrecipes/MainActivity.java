@@ -38,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new recipesFragment();
                     loadFragment(fragment);
                     return true;
-                case R.id.favoriteRecipesFragment:
-                    fragment = new favoriteRecipesFragment();
+                case R.id.foodVideosFragment:
+                    fragment = new foodVideosFragment();
                     loadFragment(fragment);
                     return true;
-                case R.id.foodJokesFragment:
-                    fragment = new foodJokesFragment();
+                case R.id.utilityFragment:
+                    fragment = new utilityFragment();
                     loadFragment(fragment);
                     return true;
             }

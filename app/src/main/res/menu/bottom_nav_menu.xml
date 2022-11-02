@@ -5,11 +5,11 @@
         android:title="@string/recipes_fragment"
         android:icon="@drawable/ic_baseline_menu_book_24"/>
     <item
-        android:id="@+id/favoriteRecipesFragment"
+        android:id="@+id/foodVideosFragment"
         android:title="@string/favorite_recipes_fragment"
         android:icon="@drawable/ic_baseline_star_24"/>
     <item
-        android:id="@+id/foodJokesFragment"
-        android:title="@string/food_jokes_fragment"
-        android:icon="@drawable/ic_baseline_emoji_emotions_24"/>
+        android:id="@+id/utilityFragment"
+        android:title="@string/utility"
+        android:icon="@drawable/ic_baseline_category_24"/>
 </menu>

@@ -10,15 +10,15 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link favoriteRecipesFragment#newInstance} factory method to
+ * Use the {@link foodVideosFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class favoriteRecipesFragment extends Fragment {
+public class foodVideosFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite_recipes, container, false);
+        return inflater.inflate(R.layout.fragment_food_videos, container, false);
     }
 }
