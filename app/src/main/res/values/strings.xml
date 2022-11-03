@@ -35,4 +35,9 @@
         <item>snack</item>
         <item>drink</item>
     </string-array>
+
+    <string-array name="nutrition_types">
+        <item>Label</item>
+        <item>Chart</item>
+    </string-array>
 </resources>

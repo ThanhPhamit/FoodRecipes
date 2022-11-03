@@ -34,7 +34,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     int id;
     String recipeName;
     TextView tvMealName, tvMealSource, tvMealSummary;
-    Button btnInstruction;
+    Button btnInstruction, btnNutrition;
     ImageView imageViewMeal;
     RecyclerView recyclerViewInGredients, recyclerViewSimilarRecipes;
     RequestManager manager;
@@ -71,6 +71,18 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnNutrition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecipeDetailsActivity.this, NutritionActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id", String.valueOf(id));
+                bundle.putString("recipeName", recipeName);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setControl() {
@@ -79,6 +91,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         tvMealSummary = findViewById(R.id.tvMealSummary);
         imageViewMeal = findViewById(R.id.imageViewMealImage);
         btnInstruction = findViewById(R.id.btnInstruction);
+        btnNutrition = findViewById(R.id.btnNutrition);
         recyclerViewInGredients = findViewById(R.id.recyclerViewMealIngredients);
         recyclerViewSimilarRecipes = findViewById(R.id.recyclerViewSimilarRecipes);
     }
