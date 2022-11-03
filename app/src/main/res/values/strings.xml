@@ -18,6 +18,7 @@
     <string name="ingredients">Ingredients</string>
     <string name="utility">Utility</string>
     <string name="food_trivia">Food Trivia</string>
+    <string name="recipe_card">Recipe card</string>
     <!--  Meal types  -->
     <string-array name="tags">
         <item>main course</item>

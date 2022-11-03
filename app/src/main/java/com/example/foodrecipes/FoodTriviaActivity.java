@@ -2,7 +2,9 @@ package com.example.foodrecipes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -52,14 +54,25 @@ public class FoodTriviaActivity extends AppCompatActivity {
     private final FoodTriviaListener foodTriviaListener = new FoodTriviaListener() {
         @Override
         public void didFetch(FoodTrivia response, String message) {
-            dialog.hide();
+            dialog.dismiss();
             tvFoodTrivia.setVisibility(View.VISIBLE);
             tvFoodTrivia.setText(response.getText());
         }
 
         @Override
         public void didError(String message) {
-            Toast.makeText(FoodTriviaActivity.this, message, Toast.LENGTH_SHORT).show();
-        }
+            dialog.dismiss();
+            AlertDialog.Builder builder = new AlertDialog.Builder(FoodTriviaActivity.this);
+            builder.setTitle("API FAILURE !");
+            builder.setMessage(message);
+            builder.setNegativeButton("OK", (DialogInterface.OnClickListener) (dialog, which) -> {
+                // If user click no then dialog box is canceled.
+                dialog.cancel();
+            });
+
+            // Create the Alert dialog
+            AlertDialog alertDialog = builder.create();
+            // Show the Alert Dialog box
+            alertDialog.show();        }
     };
 }
