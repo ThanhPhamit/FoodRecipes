@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:elevation="@dimen/random_recipe_card_elevation"
+    android:orientation="vertical">
+
+    <com.ortiz.touchview.TouchImageView
+        android:id="@+id/touchImageViewTaste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_launcher_background"/>
+</LinearLayout>
