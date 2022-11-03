@@ -44,7 +44,6 @@ public class NutritionActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 //                Toast.makeText(NutritionActivity.this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                 if (i == 0) {
-                    Toast.makeText(NutritionActivity.this, "true", Toast.LENGTH_SHORT).show();
                     Picasso.get().load("https://api.spoonacular.com/recipes/" + id + "/nutritionLabel.png?apiKey=" + getString(R.string.api_key)).into(imageViewNutrition);
                 }else{
                     Picasso.get().load("https://api.spoonacular.com/recipes/" + id + "/nutritionWidget.png?apiKey=" + getString(R.string.api_key)).into(imageViewNutrition);

@@ -9,7 +9,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,15 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodrecipes.Adapters.IngredientsApdapter;
-import com.example.foodrecipes.Adapters.InstructionsAdapter;
 import com.example.foodrecipes.Adapters.RecipeAdapters;
-import com.example.foodrecipes.Listeners.InstructionsListener;
 import com.example.foodrecipes.Listeners.RecipeClickListener;
 import com.example.foodrecipes.Listeners.RecipeDetailsListener;
 import com.example.foodrecipes.Listeners.SimilarRecipesListener;
-import com.example.foodrecipes.Models.Instruction;
 import com.example.foodrecipes.Models.RecipeDetailsResponse;
 import com.example.foodrecipes.Models.SimilarRecipe;
+import com.ortiz.touchview.TouchImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,13 +31,16 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     int id;
     String recipeName;
     TextView tvMealName, tvMealSource, tvMealSummary;
-    Button btnInstruction, btnNutrition;
-    ImageView imageViewMeal;
+    Button btnNutrition, btnTaste;
+    ImageView imageViewMeal, btnInstruction;
     RecyclerView recyclerViewInGredients, recyclerViewSimilarRecipes;
     RequestManager manager;
     ProgressDialog dialog;
     IngredientsApdapter ingredientsApdapter;
     RecipeAdapters recipeAdapters;
+    Dialog tasteDialog;
+    TouchImageView touchImageViewTaste;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +83,14 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnTaste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tasteDialog.show();
+                Picasso.get().load("https://api.spoonacular.com/recipes/" + id + "/tasteWidget.png?apiKey=" + getString(R.string.api_key)).into(touchImageViewTaste);
+            }
+        });
     }
 
     private void setControl() {
@@ -94,6 +102,10 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         btnNutrition = findViewById(R.id.btnNutrition);
         recyclerViewInGredients = findViewById(R.id.recyclerViewMealIngredients);
         recyclerViewSimilarRecipes = findViewById(R.id.recyclerViewSimilarRecipes);
+        btnTaste = findViewById(R.id.btnTaste);
+        tasteDialog = new Dialog(this);
+        tasteDialog.setContentView(R.layout.taste_dialog_layout);
+        touchImageViewTaste = tasteDialog.findViewById(R.id.touchImageViewTaste);
     }
 
     private final RecipeDetailsListener recipeDetailsListener = new RecipeDetailsListener() {
