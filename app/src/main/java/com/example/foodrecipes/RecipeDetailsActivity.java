@@ -34,8 +34,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     int id;
     String recipeName;
     TextView tvMealName, tvMealSource, tvMealSummary;
-    Button btnInstruction, btnNutrition;
-    ImageView imageViewMeal;
+    Button btnNutrition;
+    ImageView imageViewMeal, btnInstruction;
     RecyclerView recyclerViewInGredients, recyclerViewSimilarRecipes;
     RequestManager manager;
     ProgressDialog dialog;

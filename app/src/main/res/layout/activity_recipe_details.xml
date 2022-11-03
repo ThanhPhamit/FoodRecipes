@@ -6,44 +6,67 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".RecipeDetailsActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:title="@string/recipe_details"
-        app:titleTextColor="@color/white" />
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="@string/recipe_details"
+                android:textColor="@color/white"
+                android:textSize="@dimen/action_bar_title_size"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnInstruction"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@drawable/instructions_icon" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:elevation="@dimen/cardview_default_elevation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="@dimen/cardview_default_elevation"
             android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_marginVertical="5dp"
-                android:layout_marginHorizontal="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="5dp"
                 android:background="@color/recipe_details_bg"
                 android:elevation="@dimen/random_recipe_card_elevation"
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingHorizontal="5dp"
-                    android:singleLine="true"
-                    android:ellipsize="marquee"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
-                    android:layout_marginTop="8dp"
                     android:id="@+id/tvMealName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="marquee"
                     android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:paddingHorizontal="5dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
                     android:text="Recipe Name"
                     android:textColor="@color/black"
                     android:textSize="@dimen/recipe_name_text_size"
@@ -71,13 +94,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Summary"
-                    android:gravity="center"
                     android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="Summary"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title_size"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tvMealSummary"
                     android:layout_width="match_parent"
@@ -88,13 +111,14 @@
                     android:text="Summary"
                     android:textColor="@color/black"
                     android:textSize="@dimen/summary_size"
-                    android:textStyle="normal"/>
+                    android:textStyle="normal" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Similar Recipes"
-                    android:gravity="center"
                     android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="Similar Recipes"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title_size"
                     android:textStyle="bold" />
@@ -104,33 +128,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginVertical="10dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <Button
-                    android:id="@+id/btnInstruction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Instruction"
-                    />
-                <Button
-                    android:layout_marginHorizontal="30dp"
                     android:id="@+id/btnNutrition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nutrition"
-                    />
+                    android:layout_marginHorizontal="0dp"
+                    android:text="Nutrition" />
+
+                <Button
+                    android:id="@+id/btnTaste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:text="Taste" />
             </LinearLayout>
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:layout_marginVertical="5dp"
                 android:background="@color/recipe_details_bg"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
