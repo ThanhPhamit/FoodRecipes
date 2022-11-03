@@ -11,13 +11,13 @@
         android:label="fragment_recipes"
         tools:layout="@layout/fragment_recipes" />
     <fragment
-        android:id="@+id/favoriteRecipesFragment"
-        android:name="com.example.foodrecipes.favoriteRecipesFragment"
-        android:label="fragment_favorite_recipes"
-        tools:layout="@layout/fragment_favorite_recipes" />
+        android:id="@+id/foodVideosFragment"
+        android:name="com.example.foodrecipes.foodVideosFragment"
+        android:label="fragment_food_videos"
+        tools:layout="@layout/fragment_food_videos" />
     <fragment
-        android:id="@+id/foodJokesFragment"
-        android:name="com.example.foodrecipes.foodJokesFragment"
-        android:label="fragment_food_jokes"
-        tools:layout="@layout/fragment_food_jokes" />
+        android:id="@+id/utilityFragment"
+        android:name="com.example.foodrecipes.utilityFragment"
+        android:label="fragment_utility"
+        tools:layout="@layout/fragment_utility" />
 </navigation>
