@@ -193,9 +193,8 @@ public class RequestManager {
 
     //Get recipe card
     public void getRecipeCard(RecipeCardResponeListener listener, int id) {
-        Toast.makeText(context, id + "", Toast.LENGTH_SHORT).show();
         CallRecipeCard callRecipeCard = retrofit.create(CallRecipeCard.class);
-        Call<RecipeCardRespone> call = callRecipeCard.callRecipeCard(id, "background2", context.getString(R.string.api_key));
+        Call<RecipeCardRespone> call = callRecipeCard.callRecipeCard(id, context.getString(R.string.api_key));
         call.enqueue(new Callback<RecipeCardRespone>() {
             @Override
             public void onResponse(Call<RecipeCardRespone> call, Response<RecipeCardRespone> response) {
@@ -268,7 +267,6 @@ public class RequestManager {
         @GET("recipes/{id}/card")
         Call<RecipeCardRespone> callRecipeCard(
                 @Path("id") int id,
-                @Query("backgroundImage") String backgroundImage,
                 @Query("apiKey") String apiKey
         );
     }

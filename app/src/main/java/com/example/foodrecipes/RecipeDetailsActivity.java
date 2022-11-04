@@ -25,6 +25,7 @@ import com.example.foodrecipes.Listeners.SimilarRecipesListener;
 import com.example.foodrecipes.Models.RecipeDetailsResponse;
 import com.example.foodrecipes.Models.SimilarRecipe;
 import com.ortiz.touchview.TouchImageView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -117,7 +118,17 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             tvMealName.setSelected(true);
             tvMealSource.setText("Food source: " + response.getSourceName());
             tvMealSummary.setText(response.getSummary());
-            Picasso.get().load(response.getImage()).into(imageViewMeal);
+            Picasso.get().load(response.getImage()).into(imageViewMeal, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    imageViewMeal.setImageResource(R.drawable.no_image_available_icon);
+                }
+            });
 //            Show ingredients recycler view
             recyclerViewInGredients.setHasFixedSize(true);
             recyclerViewInGredients.setLayoutManager(new GridLayoutManager(RecipeDetailsActivity.this, 3));

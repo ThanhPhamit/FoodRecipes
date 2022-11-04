@@ -27,7 +27,7 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/btnInstruction"
+                android:id="@+id/btnDownload"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
