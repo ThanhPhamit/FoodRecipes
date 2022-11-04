@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -51,7 +53,7 @@ public class InstructionActivity extends AppCompatActivity {
     private final InstructionsListener instructionsListener = new InstructionsListener() {
         @Override
         public void didFetch(ArrayList<Instruction> response, String message) {
-            dialog.hide();
+            dialog.dismiss();
             recyclerViewInstruction.setHasFixedSize(true);
             recyclerViewInstruction.setLayoutManager((new LinearLayoutManager(InstructionActivity.this, LinearLayoutManager.VERTICAL, false)));
             instructionsAdapter = new InstructionsAdapter(InstructionActivity.this, R.layout.list_instructions_item, response);
@@ -60,7 +62,18 @@ public class InstructionActivity extends AppCompatActivity {
 
         @Override
         public void didError(String message) {
-            Toast.makeText(InstructionActivity.this, message, Toast.LENGTH_SHORT).show();
-        }
+            dialog.dismiss();
+            AlertDialog.Builder builder = new AlertDialog.Builder(InstructionActivity.this);
+            builder.setTitle("API FAILURE !");
+            builder.setMessage(message);
+            builder.setNegativeButton("OK", (DialogInterface.OnClickListener) (dialog, which) -> {
+                // If user click no then dialog box is canceled.
+                dialog.cancel();
+            });
+
+            // Create the Alert dialog
+            AlertDialog alertDialog = builder.create();
+            // Show the Alert Dialog box
+            alertDialog.show();        }
     };
 }

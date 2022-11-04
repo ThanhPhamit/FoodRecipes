@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.example.foodrecipes.Listeners.SimilarRecipesListener;
 import com.example.foodrecipes.Models.RecipeDetailsResponse;
 import com.example.foodrecipes.Models.SimilarRecipe;
 import com.ortiz.touchview.TouchImageView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -31,15 +34,13 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     int id;
     String recipeName;
     TextView tvMealName, tvMealSource, tvMealSummary;
-    Button btnNutrition, btnTaste;
+    Button btnNutrition, btnRecipeCard;
     ImageView imageViewMeal, btnInstruction;
     RecyclerView recyclerViewInGredients, recyclerViewSimilarRecipes;
     RequestManager manager;
     ProgressDialog dialog;
     IngredientsApdapter ingredientsApdapter;
     RecipeAdapters recipeAdapters;
-    Dialog tasteDialog;
-    TouchImageView touchImageViewTaste;
 
 
     @Override
@@ -84,11 +85,14 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             }
         });
 
-        btnTaste.setOnClickListener(new View.OnClickListener() {
+        btnRecipeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tasteDialog.show();
-                Picasso.get().load("https://api.spoonacular.com/recipes/" + id + "/tasteWidget.png?apiKey=" + getString(R.string.api_key)).into(touchImageViewTaste);
+                Intent intent = new Intent(RecipeDetailsActivity.this, RecipeCardActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id", String.valueOf(id));
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }
@@ -102,10 +106,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         btnNutrition = findViewById(R.id.btnNutrition);
         recyclerViewInGredients = findViewById(R.id.recyclerViewMealIngredients);
         recyclerViewSimilarRecipes = findViewById(R.id.recyclerViewSimilarRecipes);
-        btnTaste = findViewById(R.id.btnTaste);
-        tasteDialog = new Dialog(this);
-        tasteDialog.setContentView(R.layout.taste_dialog_layout);
-        touchImageViewTaste = tasteDialog.findViewById(R.id.touchImageViewTaste);
+        btnRecipeCard = findViewById(R.id.btnRecipeCard);
     }
 
     private final RecipeDetailsListener recipeDetailsListener = new RecipeDetailsListener() {
@@ -117,7 +118,17 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             tvMealName.setSelected(true);
             tvMealSource.setText("Food source: " + response.getSourceName());
             tvMealSummary.setText(response.getSummary());
-            Picasso.get().load(response.getImage()).into(imageViewMeal);
+            Picasso.get().load(response.getImage()).into(imageViewMeal, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    imageViewMeal.setImageResource(R.drawable.no_image_available_icon);
+                }
+            });
 //            Show ingredients recycler view
             recyclerViewInGredients.setHasFixedSize(true);
             recyclerViewInGredients.setLayoutManager(new GridLayoutManager(RecipeDetailsActivity.this, 3));
@@ -129,7 +140,19 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         @Override
         public void didError(String message) {
-            Toast.makeText(RecipeDetailsActivity.this, message, Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+            AlertDialog.Builder builder = new AlertDialog.Builder(RecipeDetailsActivity.this);
+            builder.setTitle("API FAILURE !");
+            builder.setMessage(message);
+            builder.setNegativeButton("OK", (DialogInterface.OnClickListener) (dialog, which) -> {
+                // If user click no then dialog box is canceled.
+                dialog.cancel();
+            });
+
+            // Create the Alert dialog
+            AlertDialog alertDialog = builder.create();
+            // Show the Alert Dialog box
+            alertDialog.show();
         }
     };
 
@@ -146,8 +169,19 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         @Override
         public void didError(String message) {
-            Toast.makeText(RecipeDetailsActivity.this, message, Toast.LENGTH_SHORT).show();
-        }
+            dialog.dismiss();
+            AlertDialog.Builder builder = new AlertDialog.Builder(RecipeDetailsActivity.this);
+            builder.setTitle("API FAILURE !");
+            builder.setMessage(message);
+            builder.setNegativeButton("OK", (DialogInterface.OnClickListener) (dialog, which) -> {
+                // If user click no then dialog box is canceled.
+                dialog.cancel();
+            });
+
+            // Create the Alert dialog
+            AlertDialog alertDialog = builder.create();
+            // Show the Alert Dialog box
+            alertDialog.show();        }
     };
 
     //    Recipe Click Listener

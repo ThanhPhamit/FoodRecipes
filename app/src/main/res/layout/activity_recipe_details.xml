@@ -144,11 +144,11 @@
                     android:text="Nutrition" />
 
                 <Button
-                    android:id="@+id/btnTaste"
+                    android:id="@+id/btnRecipeCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
-                    android:text="Taste" />
+                    android:text="@string/recipe_card" />
             </LinearLayout>
 
             <LinearLayout

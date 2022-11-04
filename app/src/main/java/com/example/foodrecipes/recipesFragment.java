@@ -1,6 +1,8 @@
 package com.example.foodrecipes;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -91,8 +93,19 @@ public class recipesFragment extends Fragment {
 
         @Override
         public void didError(String message) {
-            Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_LONG);
-            toast.show();
+            dialog.dismiss();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("API FAILURE !");
+            builder.setMessage(message);
+            builder.setNegativeButton("OK", (DialogInterface.OnClickListener) (dialog, which) -> {
+                // If user click no then dialog box is canceled.
+                dialog.cancel();
+            });
+
+            // Create the Alert dialog
+            AlertDialog alertDialog = builder.create();
+            // Show the Alert Dialog box
+            alertDialog.show();
         }
     };
 
