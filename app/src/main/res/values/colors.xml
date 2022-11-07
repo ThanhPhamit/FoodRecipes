@@ -12,4 +12,5 @@
     <color name="recipe_bg">#BEF1A4</color>
     <color name="recipe_details_bg">#DBFFC9</color>
     <color name="recommend_text">#DD373737</color>
+    <color name="random_recipe_type">#2FAF00</color>
 </resources>
