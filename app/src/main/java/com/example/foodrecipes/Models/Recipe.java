@@ -366,4 +366,70 @@ public class Recipe {
     public void setSpoonacularSourceUrl(String spoonacularSourceUrl) {
         this.spoonacularSourceUrl = spoonacularSourceUrl;
     }
+
+    public String getTypeString() {
+        String value = "";
+        if (vegetarian) {
+            value += "Vegetarian ";
+        }
+        if (vegan) {
+            value += "Vegan ";
+        }
+        if (glutenFree) {
+            value += "GluetenFree ";
+        }
+        if (dairyFree) {
+            value += "DairyFree ";
+        }
+        if (veryHealthy) {
+            value += "VeryHealthy ";
+        }
+        if (cheap) {
+            value += "Cheap ";
+        }
+        if (veryPopular) {
+            value += "VeryPopular ";
+        }
+        if (sustainable) {
+            value += "Sustainable ";
+        }
+        if (lowFodmap) {
+            value += "LowFodmap ";
+        }
+        return value;
+    }
+
+    public String getDishTypesString() {
+        String value = "";
+        for (int i = 0; i < dishTypes.size(); i++) {
+            value += camelCase(dishTypes.get(i));
+            if (i != (dishTypes.size() - 1)) {
+                value += " ";
+            }
+        }
+        return value;
+    }
+
+    public String camelCase(String value) {
+        String result = "";
+        for (int i = 0; i < value.length(); i++) {
+            if (value.charAt(i) == ' ') {
+                if (i != value.length() - 1) {
+                    String temp = value.charAt(i + 1) + "";
+                    temp = temp.toUpperCase();
+                    result += temp;
+                    i++;
+                }
+            }else{
+                if (i == 0){
+                    String temp = value.charAt(i) + "";
+                    temp = temp.toUpperCase();
+                    result += temp;
+                }else{
+                    result += value.charAt(i);
+                }
+            }
+        }
+        return result;
+    }
 }

@@ -52,8 +52,8 @@ public class RecipeAdapters extends RecyclerView.Adapter<RecipeAdapters.RandomRe
 
                 holder.tvLikes.setText(recipe.getAggregateLikes() + " Likes");
                 holder.tvTimes.setText(recipe.getReadyInMinutes() + " Minutes");
-                holder.tvDes.setText(recipe.getSummary());
-
+                holder.tvDes.setText(recipe.getDishTypesString());
+                holder.tvDes.setSelected(true);
                 //using to load image
                 Picasso.get().load(recipe.getImage()).into(holder.imgFood);
 
