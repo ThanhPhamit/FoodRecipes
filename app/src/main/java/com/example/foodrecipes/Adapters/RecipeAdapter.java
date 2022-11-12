@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -17,17 +16,18 @@ import com.example.foodrecipes.Listeners.RecipeClickListener;
 import com.example.foodrecipes.Models.Recipe;
 import com.example.foodrecipes.Models.SimilarRecipe;
 import com.example.foodrecipes.R;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecipeAdapters extends RecyclerView.Adapter<RecipeAdapters.RandomRecipeViewHolder> {
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RandomRecipeViewHolder> {
     Activity context;
     int layoutId;
     ArrayList list;
     RecipeClickListener recipeClickListener;
 
-    public RecipeAdapters(Activity context, int layoutId, ArrayList list, RecipeClickListener recipeClickListener) {
+    public RecipeAdapter(Activity context, int layoutId, ArrayList list, RecipeClickListener recipeClickListener) {
         this.context = context;
         this.layoutId = layoutId;
         this.list = list;
@@ -55,7 +55,17 @@ public class RecipeAdapters extends RecyclerView.Adapter<RecipeAdapters.RandomRe
                 holder.tvDes.setText(recipe.getDishTypesString());
                 holder.tvDes.setSelected(true);
                 //using to load image
-                Picasso.get().load(recipe.getImage()).into(holder.imgFood);
+                Picasso.get().load(recipe.getImage()).into(holder.imgFood, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        holder.imgFood.setImageResource(R.drawable.no_image_available_icon);
+                    }
+                });
 
                 holder.random_list_container.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -73,7 +83,17 @@ public class RecipeAdapters extends RecyclerView.Adapter<RecipeAdapters.RandomRe
 
                 //using to load image
                 String imageSize = "312x231";
-                Picasso.get().load(context.getString(R.string.get_recipe_image) + similarRecipe.getId() + "-" + imageSize + "." + similarRecipe.getImageType()).into(holder.imgFood);
+                Picasso.get().load(context.getString(R.string.get_recipe_image) + similarRecipe.getId() + "-" + imageSize + "." + similarRecipe.getImageType()).into(holder.imgFood, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        holder.imgFood.setImageResource(R.drawable.no_image_available_icon);
+                    }
+                });
 
                 holder.random_list_container.setOnClickListener(new View.OnClickListener() {
                     @Override

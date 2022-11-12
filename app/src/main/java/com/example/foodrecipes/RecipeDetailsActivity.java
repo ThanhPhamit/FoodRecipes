@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,16 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.foodrecipes.Adapters.IngredientsApdapter;
-import com.example.foodrecipes.Adapters.RecipeAdapters;
+import com.example.foodrecipes.Adapters.RecipeAdapter;
 import com.example.foodrecipes.Listeners.RecipeClickListener;
 import com.example.foodrecipes.Listeners.RecipeDetailsListener;
 import com.example.foodrecipes.Listeners.SimilarRecipesListener;
 import com.example.foodrecipes.Models.RecipeDetailsResponse;
 import com.example.foodrecipes.Models.SimilarRecipe;
-import com.ortiz.touchview.TouchImageView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -40,7 +37,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     RequestManager manager;
     ProgressDialog dialog;
     IngredientsApdapter ingredientsApdapter;
-    RecipeAdapters recipeAdapters;
+    RecipeAdapter recipeAdapters;
 
 
     @Override
@@ -163,7 +160,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
             recyclerViewSimilarRecipes.setHasFixedSize(true);
             recyclerViewSimilarRecipes.setLayoutManager(new LinearLayoutManager(RecipeDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
-            recipeAdapters = new RecipeAdapters(RecipeDetailsActivity.this, R.layout.list_similar_recipe, response, recipeClickListener);
+            recipeAdapters = new RecipeAdapter(RecipeDetailsActivity.this, R.layout.list_similar_recipe, response, recipeClickListener);
             recyclerViewSimilarRecipes.setAdapter(recipeAdapters);
         }
 
@@ -181,7 +178,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             // Create the Alert dialog
             AlertDialog alertDialog = builder.create();
             // Show the Alert Dialog box
-            alertDialog.show();        }
+            alertDialog.show();
+        }
     };
 
     //    Recipe Click Listener

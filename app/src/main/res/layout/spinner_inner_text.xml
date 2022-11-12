@@ -6,6 +6,8 @@
     android:textColor="@color/colorPrimary"
     android:textSize="@dimen/spinner_text_size"
     android:padding="@dimen/spinner_padding"
+    android:textAlignment="center"
+    android:gravity="center_horizontal"
     >
 
 </TextView>

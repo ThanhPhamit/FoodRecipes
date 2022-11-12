@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/recipe_bg"
     tools:context=".foodVideosFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -21,15 +23,47 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/favorite_recipes_fragment"
+                    android:text="Recipe Videos"
                     android:textColor="@color/white"
                     android:textSize="@dimen/action_bar_title_size"
                     android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/spinnerTypes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:entries="@array/types"
+                    android:gravity="center" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <TextView
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_view_height"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        android:layout_margin="@dimen/random_recipe_layout_margin"
+        >
+        <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:id="@+id/searchViewRecipeVideo"
+            app:queryHint="@string/search_hint"
+            app:iconifiedByDefault="false"
+            />
+    </androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerViewRecipeVideo"
+        />
+    <TextView
+        android:id="@+id/tvNoRecipeVideo"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:text="No recipe video available"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -17,9 +17,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.foodrecipes.Adapters.RecipeAdapters;
+import com.example.foodrecipes.Adapters.RecipeAdapter;
 import com.example.foodrecipes.Listeners.RandomRecipeResponseListener;
 import com.example.foodrecipes.Listeners.RecipeClickListener;
 import com.example.foodrecipes.Models.RandomRecipeApiResponse;
@@ -34,7 +33,7 @@ import java.util.ArrayList;
 public class recipesFragment extends Fragment {
     ProgressDialog dialog;
     RequestManager manager;
-    RecipeAdapters recipeAdapters;
+    RecipeAdapter recipeAdapters;
     RecyclerView recyclerView;
     View view;
     ArrayList<String> tags = new ArrayList<>();
@@ -87,7 +86,7 @@ public class recipesFragment extends Fragment {
             recyclerView = view.findViewById(R.id.recycler_random);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            recipeAdapters = new RecipeAdapters(getActivity(), R.layout.list_random_recipe, response.recipes, recipeClickListener);
+            recipeAdapters = new RecipeAdapter(getActivity(), R.layout.list_random_recipe, response.recipes, recipeClickListener);
             recyclerView.setAdapter(recipeAdapters);
         }
 

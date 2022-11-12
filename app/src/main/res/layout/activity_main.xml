@@ -26,6 +26,9 @@
         android:layout_weight="1"
         app:menu="@menu/bottom_nav_menu"
         android:id="@+id/navigation"
+        app:itemIconSize="25dp"
+        app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
         />
 
 </LinearLayout>

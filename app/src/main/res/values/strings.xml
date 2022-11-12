@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">FoodRecipes</string>
-    <string name="api_key">22a4288ceb2e4110b9e0a4e88ae25743</string>
+    <string name="api_key">a0b440ca8e1241febec1a342e5f900e9</string>
+    <string name="youtube_api_key">AIzaSyCOuY64HAuHqkecCBlScEvPi4JcOw3BBR4</string>
     <string name="app_name1">Food Recipes</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="recipes_fragment">Recipes</string>
@@ -40,5 +41,23 @@
     <string-array name="nutrition_types">
         <item>Label</item>
         <item>Chart</item>
+    </string-array>
+
+    <string-array name="types">
+        <item>main course</item>
+        <item>side dish</item>
+        <item>dessert</item>
+        <item>appetizer</item>
+        <item>salad</item>
+        <item>bread</item>
+        <item>breakfast</item>
+        <item>soup</item>
+        <item>beverage</item>
+        <item>sauce</item>
+        <item>marinade</item>
+        <item>fingerfood</item>
+        <item>snack</item>
+        <item>drink</item>
+        <item>none</item>
     </string-array>
 </resources>
