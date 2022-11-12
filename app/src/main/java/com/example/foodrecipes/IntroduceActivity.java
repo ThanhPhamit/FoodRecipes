@@ -5,21 +5,39 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class IntroduceActivity extends AppCompatActivity {
-    private static int LIMIT = 3000;
+    Button btnNext;
+    private static int LIMIT = 5000;
+    private final Handler handler = new Handler();
+    private final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            Intent intent = new Intent(IntroduceActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduce);
-        new Handler().postDelayed(new Runnable() {
+        handler.postDelayed(runnable, LIMIT);
+
+        btnNext = findViewById(R.id.btnNext);
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View view) {
+                handler.removeCallbacks(runnable);
                 Intent intent = new Intent(IntroduceActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }, LIMIT);
+        });
     }
 }

@@ -52,4 +52,5 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.github.MikeOrtiz:TouchImageView:1.4.1'
 
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
 }

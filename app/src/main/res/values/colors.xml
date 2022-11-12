@@ -13,4 +13,7 @@
     <color name="recipe_details_bg">#DBFFC9</color>
     <color name="recommend_text">#DD373737</color>
     <color name="random_recipe_type">#2FAF00</color>
+    <color name="thumnail_bg">#70787878</color>
+    <color name="line_color">#B8B8B8</color>
+    <color name="text_link_color">#001FE4</color>
 </resources>

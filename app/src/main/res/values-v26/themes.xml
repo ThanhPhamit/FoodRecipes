@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/white</item>
@@ -29,4 +30,16 @@
         <item name="android:navigationBarColor">@color/SplashColorPrimary</item>
     </style>
 
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="RatingBarStyles" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#a7a7a7</item>
+        <item name="colorControlActivated">#FFD70D</item>
+    </style>
 </resources>

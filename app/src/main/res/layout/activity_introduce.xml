@@ -28,6 +28,7 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -41,5 +42,15 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             />
+        <Button android:id="@+id/btnNext"
+            android:backgroundTint="@color/SplashColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:layout_gravity="right"
+            android:layout_marginBottom="25dp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+ />
     </LinearLayout>
 </LinearLayout>

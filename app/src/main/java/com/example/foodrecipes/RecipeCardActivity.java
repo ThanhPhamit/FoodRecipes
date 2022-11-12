@@ -113,7 +113,6 @@ public class RecipeCardActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(Exception e) {
-                    Toast.makeText(RecipeCardActivity.this, "FAIL", Toast.LENGTH_SHORT).show();
                     touchImageViewRecipeCard.setImageResource(R.drawable.no_image_available_icon);
                 }
             });

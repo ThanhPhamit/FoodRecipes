@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ortiz.touchview.TouchImageView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,9 +45,29 @@ public class NutritionActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 //                Toast.makeText(NutritionActivity.this, adapterView.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                 if (i == 0) {
-                    Picasso.get().load("https://api.spoonacular.com/recipes/" + id + "/nutritionLabel.png?apiKey=" + getString(R.string.api_key)).into(imageViewNutrition);
+                    Picasso.get().load("https://api.spoonacular.com/recipes/" + id + "/nutritionLabel.png?apiKey=" + getString(R.string.api_key)).into(imageViewNutrition, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            imageViewNutrition.setImageResource(R.drawable.no_image_available_icon);
+                        }
+                    });
                 }else{
-                    Picasso.get().load("https://api.spoonacular.com/recipes/" + id + "/nutritionWidget.png?apiKey=" + getString(R.string.api_key)).into(imageViewNutrition);
+                    Picasso.get().load("https://api.spoonacular.com/recipes/" + id + "/nutritionWidget.png?apiKey=" + getString(R.string.api_key)).into(imageViewNutrition, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            imageViewNutrition.setImageResource(R.drawable.no_image_available_icon);
+                        }
+                    });
                 }
             }
 

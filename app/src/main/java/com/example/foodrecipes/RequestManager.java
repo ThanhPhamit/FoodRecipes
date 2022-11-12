@@ -9,14 +9,18 @@ import com.example.foodrecipes.Listeners.InstructionsListener;
 import com.example.foodrecipes.Listeners.RandomRecipeResponseListener;
 import com.example.foodrecipes.Listeners.RecipeCardResponeListener;
 import com.example.foodrecipes.Listeners.RecipeDetailsListener;
+import com.example.foodrecipes.Listeners.RecipeVideosResponseListerner;
 import com.example.foodrecipes.Listeners.SimilarRecipesListener;
+import com.example.foodrecipes.Listeners.YoutubeVideosResponseListener;
 import com.example.foodrecipes.Models.FoodTrivia;
 import com.example.foodrecipes.Models.Instruction;
 import com.example.foodrecipes.Models.RandomRecipeApiResponse;
 import com.example.foodrecipes.Models.Recipe;
 import com.example.foodrecipes.Models.RecipeCardRespone;
 import com.example.foodrecipes.Models.RecipeDetailsResponse;
+import com.example.foodrecipes.Models.RecipeVideoResponse;
 import com.example.foodrecipes.Models.SimilarRecipe;
+import com.example.foodrecipes.Models.YoutubeVideoResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,11 +38,16 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
-
 public class RequestManager {
+    private final String YOUTUBE_VIDEOS_PARTS = "statistics, snippet";
     Context context;
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.spoonacular.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+    Retrofit youtubeRetrofit = new Retrofit.Builder()
+            .baseUrl("https://www.googleapis.com/youtube/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
@@ -220,6 +229,63 @@ public class RequestManager {
         });
     }
 
+//    Get recipe videos
+    public void getRecipeVideos(RecipeVideosResponseListerner listerner, String query, String type){
+        CallRecipeVideos callRecipeVideos = retrofit.create(CallRecipeVideos.class);
+        Call<RecipeVideoResponse> call = callRecipeVideos.callRecipeVideos(context.getString(R.string.api_key), "30",type, query);
+        call.enqueue(new Callback<RecipeVideoResponse>() {
+            @Override
+            public void onResponse(Call<RecipeVideoResponse> call, Response<RecipeVideoResponse> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        JSONObject object = new JSONObject(response.errorBody().string());
+                        listerner.didError(object.getString("message"));
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    return;
+                }
+                listerner.didFetch(response.body(), response.message());
+            }
+
+            @Override
+            public void onFailure(Call<RecipeVideoResponse> call, Throwable t) {
+                listerner.didError(t.getMessage());
+            }
+        });
+    }
+
+//    Get youtube videos
+    public void getYoutubeVideos(YoutubeVideosResponseListener listener, String youtubeId){
+        CallYoutubeVideos callYoutubeVideos = youtubeRetrofit.create(CallYoutubeVideos.class);
+        Call<YoutubeVideoResponse> call = callYoutubeVideos.callYoutubeVideos(context.getString(R.string.youtube_api_key), youtubeId, YOUTUBE_VIDEOS_PARTS);
+        call.enqueue(new Callback<YoutubeVideoResponse>() {
+            @Override
+            public void onResponse(Call<YoutubeVideoResponse> call, Response<YoutubeVideoResponse> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        JSONObject object = new JSONObject(response.errorBody().string());
+                        listener.didError(object.getString("message"));
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+            }
+
+            @Override
+            public void onFailure(Call<YoutubeVideoResponse> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
 
     //INTERFACE
     private interface CallRandomRecipes {
@@ -268,6 +334,25 @@ public class RequestManager {
         Call<RecipeCardRespone> callRecipeCard(
                 @Path("id") int id,
                 @Query("apiKey") String apiKey
+        );
+    }
+
+    private interface CallRecipeVideos {
+        @GET("food/videos/search")
+        Call<RecipeVideoResponse> callRecipeVideos(
+                @Query("apiKey") String apiKey,
+                @Query("number") String number,
+                @Query("type") String type,
+                @Query("query") String query
+        );
+    }
+
+    private interface CallYoutubeVideos{
+        @GET("v3/videos")
+        Call<YoutubeVideoResponse> callYoutubeVideos(
+                @Query("key") String youtubeApiKey,
+                @Query("id") String id,
+                @Query("part") String part
         );
     }
 }

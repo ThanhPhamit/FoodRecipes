@@ -34,7 +34,7 @@ public class utilityFragment extends Fragment {
         linearLayoutFoodTrivia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), FoodTriviaActivity.class));
+                startActivity(new Intent(getContext(), PlayVideoActivity.class));
             }
         });
     }

@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/recipesFragment"
-        android:title="@string/recipes_fragment"
-        android:icon="@drawable/ic_baseline_menu_book_24"/>
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="@string/recipes_fragment" />
     <item
         android:id="@+id/foodVideosFragment"
-        android:title="@string/favorite_recipes_fragment"
-        android:icon="@drawable/ic_baseline_star_24"/>
+        android:icon="@drawable/youtube"
+        android:title="Videos" />
     <item
         android:id="@+id/utilityFragment"
-        android:title="@string/utility"
-        android:icon="@drawable/ic_baseline_category_24"/>
+        android:icon="@drawable/ic_baseline_category_24"
+        android:title="@string/utility" />
 </menu>

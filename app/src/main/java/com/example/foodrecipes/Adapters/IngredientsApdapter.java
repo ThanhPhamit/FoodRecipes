@@ -1,6 +1,5 @@
 package com.example.foodrecipes.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodrecipes.Models.ExtendedIngredient;
-import com.example.foodrecipes.Models.Ingredient;
-import com.example.foodrecipes.Models.Recipe;
 import com.example.foodrecipes.R;
 import com.squareup.picasso.Picasso;
 
