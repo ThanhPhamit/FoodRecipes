@@ -46,7 +46,7 @@ public class RecipeVideoAdapter extends RecyclerView.Adapter<RecipeVideoAdapter.
         RecipeVideo recipeVideo = list.get(position);
         holder.tvTitle.setText(recipeVideo.getShortTitle());
         holder.tvLongTitle.setText(recipeVideo.getTitle());
-        holder.ratingBarVideo.setRating((float) recipeVideo.getRating());
+        holder.ratingBarVideo.setRating((float) (recipeVideo.getRating() * 5));
         Picasso.get().load(recipeVideo.getThumbnail()).into(holder.imageViewRecipeVideoThumbnail, new Callback() {
             @Override
             public void onSuccess() {

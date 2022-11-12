@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:rating="2.7555"
-                android:stepSize="0.1"
+                android:stepSize="0.001"
                 android:theme="@style/RatingBarStyles"
                 />
         </LinearLayout>
