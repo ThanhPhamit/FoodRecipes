@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -144,11 +145,15 @@ public class PlayVideoActivity extends YouTubeBaseActivity implements YouTubePla
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && isYoutubeFullScreen == true) {
-            myYouTubePlayer.setFullscreen(false);
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (isYoutubeFullScreen == true){
+                myYouTubePlayer.setFullscreen(false);
+                isYoutubeFullScreen = false;
+            }else{
+                finish();
+            }
             return true;
         } else {
-            finish();
             return false;
         }
     }
@@ -160,7 +165,7 @@ public class PlayVideoActivity extends YouTubeBaseActivity implements YouTubePla
             tvTitle.setText(response.youtubeVideos.get(0).getSnippet().getLocalized().getTitle());
             Long viewCount = Long.parseLong(response.youtubeVideos.get(0).getStatistics().getViewCount());
             tvViews1.setText(withSuffix(viewCount) + " views");
-            tvChannel.setText(response.youtubeVideos.get(0).getSnippet().getChannelTitle() + " channel");
+            tvChannel.setText(response.youtubeVideos.get(0).getSnippet().getChannelTitle() + " Channel");
             tvNumberLikes.setText(response.youtubeVideos.get(0).getStatistics().getLikeCount());
             tvNumberViews.setText(response.youtubeVideos.get(0).getStatistics().getViewCount());
             String years = new SimpleDateFormat("yyyy").format(response.youtubeVideos.get(0).getSnippet().getPublishedAt());
