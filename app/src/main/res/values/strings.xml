@@ -20,6 +20,7 @@
     <string name="utility">Utility</string>
     <string name="food_trivia">Food Trivia</string>
     <string name="recipe_card">Recipe card</string>
+    <string name="convert_amounts">Convert Amounts</string>
     <!--  Meal types  -->
     <string-array name="tags">
         <item>main course</item>
