@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
  * create an instance of this fragment.
  */
 public class utilityFragment extends Fragment {
-    LinearLayout linearLayoutFoodTrivia;
+    LinearLayout linearLayoutFoodTrivia, linearLayoutConvertAmounts;
     private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,5 +41,6 @@ public class utilityFragment extends Fragment {
 
     private void setControl() {
         linearLayoutFoodTrivia = view.findViewById(R.id.linearLayoutFoodTrivia);
+        linearLayoutConvertAmounts = view.findViewById(R.id.linearLayoutConvertAmounts);
     }
 }

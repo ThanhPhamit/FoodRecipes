@@ -11,7 +11,7 @@ import android.widget.Spinner;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     Spinner spinnerTags;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

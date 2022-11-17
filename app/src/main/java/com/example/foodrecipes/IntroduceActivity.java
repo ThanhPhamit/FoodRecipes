@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 public class IntroduceActivity extends AppCompatActivity {
     Button btnNext;
@@ -17,7 +15,7 @@ public class IntroduceActivity extends AppCompatActivity {
     private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            Intent intent = new Intent(IntroduceActivity.this, MainActivity.class);
+            Intent intent = new Intent(IntroduceActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         }
@@ -34,7 +32,7 @@ public class IntroduceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 handler.removeCallbacks(runnable);
-                Intent intent = new Intent(IntroduceActivity.this, MainActivity.class);
+                Intent intent = new Intent(IntroduceActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -62,7 +62,7 @@
         android:textSize="20sp"
         android:textStyle="italic"
         android:gravity="center"
-        android:text="No recipe video available"
+        android:text="No food video available"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
