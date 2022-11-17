@@ -37,6 +37,13 @@ public class utilityFragment extends Fragment {
                 startActivity(new Intent(getContext(), FoodTriviaActivity.class));
             }
         });
+
+        linearLayoutConvertAmounts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ConvertAmountsActivity.class));
+            }
+        });
     }
 
     private void setControl() {
