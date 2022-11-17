@@ -12,8 +12,8 @@ public class Amount {
         POUND(453.59, "Pound"),
         GRAM(1, "Gram");
 
-        private double toGrams;
-        private String define;
+        public double toGrams;
+        public String define;
 
         @Override
         public String toString() {
@@ -45,7 +45,8 @@ public class Amount {
         this.targetUnit = targetUnit;
     }
 
-
+    public Amount() {
+    }
 
     public double getSourceAmount() {
         return sourceAmount;

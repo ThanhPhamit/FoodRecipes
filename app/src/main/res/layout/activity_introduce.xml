@@ -36,7 +36,7 @@
         >
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="300dp"
-            android:layout_height="400dp"
+            android:layout_height="330dp"
             app:lottie_rawRes="@raw/hamburger"
             android:id="@+id/animation_view"
             app:lottie_autoPlay="true"
